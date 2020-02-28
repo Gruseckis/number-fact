@@ -1,0 +1,23 @@
+<mat-card class="container">
+  <div class="form-container">
+    <h1>Number fact APP</h1>
+    <ng-container *ngIf="!formProcessing; else loadingTemplate">
+      <div>
+        <form class="example-form" [formGroup]="form">
+          <mat-form-field class="example-full-width">
+            <mat-label>Number</mat-label>
+            <input matInput placeholder="Enter number" formControlName="number" (blur)="findFact()" (keyup)="onKeyUp($event)">
+            <mat-error *ngIf="form.controls.number.hasError">
+              This field is required and must be an integer
+            </mat-error>
+          </mat-form-field>
+        </form>    
+        <button mat-raised-button color="primary" (click)="findFact()" [disabled]="!form.valid || formProcessing">Find Fact</button>
+        <button mat-raised-button color="accent" (click)="randomFact()" [disabled]="formProcessing">Random Fact</button>
+      </div>
+    </ng-container>
+    <ng-template #loadingTemplate>
+      <mat-spinner class="spinner"></mat-spinner>
+    </ng-template>
+  </div>
+</mat-card>
