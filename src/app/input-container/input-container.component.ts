@@ -30,7 +30,6 @@ export class InputContainerComponent implements OnDestroy {
     if (this.form.controls.number.value && !this.formProcessing && this.form.valid) {
       this.formProcessing = true;
       this.service.getFact(this.form.controls.number.value)
-        .pipe(takeUntil(this.onDestroy$))
         .subscribe((response: ApiResponse) => {
           this.openDialog({
             number: response.number,
