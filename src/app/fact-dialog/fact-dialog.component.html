@@ -1,0 +1,20 @@
+<ng-container *ngIf="!data.error; else errorTemplate">
+  <h1 mat-dialog-title>{{data.random ? 'Random fact.' : 'Fact about ' + data.number}}</h1>
+  <div mat-dialog-content>
+    <p *ngIf="data.found">Did you know that:</p>
+    <p>{{data.fact}}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="accent" (click)="closeClick()">Close</button>
+  </div>
+</ng-container>
+<ng-template #errorTemplate>
+  <h1 mat-dialog-title>Application encountered error</h1>
+  <div mat-dialog-content>
+    <p>{{data.error.statusText}}:</p>
+    <p>{{data.error.message}}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="closeClick()">Close</button>
+  </div>
+</ng-template>
