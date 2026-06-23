@@ -1,0 +1,24 @@
+<div class="fact-container">
+  <ng-container *ngIf="!processing; else loadingTemplate">
+    <div>
+      <ng-container *ngIf="!networkError; else errorTemplate">
+        <h1>Fact about number {{numberFact.number}}</h1>
+        <div>
+          <p>
+            {{numberFact.text}}
+          </p>
+        </div>
+      </ng-container>
+      <ng-template #errorTemplate>
+        <h1>Error</h1>
+        <div>
+          <p>{{networkError.statusText}}</p>
+          <p>{{networkError.message}}</p>
+        </div>
+      </ng-template>
+    </div>
+  </ng-container>
+  <ng-template #loadingTemplate>
+    <mat-spinner class="spinner"></mat-spinner>
+  </ng-template>
+</div>
